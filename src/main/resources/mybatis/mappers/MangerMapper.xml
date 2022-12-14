@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.spring_pj.mapper.ManagerMapper">
+    <resultMap id="rooms_with_reservation" type="com.koreait.spring_pj.dto.ReserveBoardDTO">
+        <association property="reserveVO">
+            <result column="reserveNo" property="reserveNo" />
+            <result column="reserveUser" property="reserveUser" />
+            <result column="reserveRoom" property="reserveRoom"/>
+            <result column="reserveDate" property="reserveDate"/>
+        </association>
+        <association property="roomVO">
+            <result column="roomNo" property="roomNo"/>
+            <result column="roomSize" property="roomSize"/>
+            <result column="roomPrice" property="roomPrice"/>
+        </association>
+    </resultMap>
+
+    <select id="get_all_rooms" resultMap="rooms_with_reservation">
+        select * from `hotel_db`.`room_tbl` room
+        LEFT OUTER JOIN `reserve_tbl` rsv
+        ON rsv.`reserveRoom` = room.`roomNo`
+    </select>
+
+    <insert id="insert_room">
+        INSERT INTO `hotel_db`.`room_tbl` VALUES
+        (#{roomNo}, #{roomSize}, #{roomPrice})
+    </insert>
+
+</mapper>

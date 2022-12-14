@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link th:href="@{/css/room.css}" rel="stylesheet" href="../../static/css/room.css">
+<script th:src="@{/js/room.js}" src="../../static/js/register.js" defer></script>
+<body>
+<h2>방 관리 페이지</h2>
+
+<div id="room-insert-container">
+    <form th:action="@{/room}" th:method="post">
+        <div id="room-setting">
+            <div>호수 <input type="number" name="roomNo"></div>
+            <div>가격 <input type="number" name="roomPrice"></div>
+            <div>최대 인원수 <input type="number" name="roomSize"></div>
+            <div>방 사진 <input type="file"></div>
+            <button class="submit-btn" type="submit">추가하기</button>
+        </div>
+    </form>
+</div>
+<h2>전체 방 목록</h2>
+<div id="room-list-wrap">
+    <div id="reserved-room-container">
+        <div class="room-list-btn-container">
+            <button disabled>예약중</button>
+        </div>
+            <ul id="reserved-room-ul">
+            </ul>
+    </div>
+    <div id="empty-room-container">
+        <div class="room-list-btn-container">
+            <button disabled>비었음</button>
+        </div>
+            <ul id="empty-room-ul">
+
+            </ul>
+    </div>
+</div>
+</body>
+</html>

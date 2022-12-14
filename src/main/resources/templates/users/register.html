@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link th:href="@{/css/register.css}" rel="stylesheet" href="../../static/css/register.css">
+<script src="https://kit.fontawesome.com/4ae8b5f015.js" crossorigin="anonymous"></script>
+<script th:src="@{/js/register.js}" src="../../static/js/register.js" defer></script>
+<body>
+  <h1>회원가입</h1>
+  <p>회원 정보를 입력해주세요. 모두 입력하셔야 가입이 가능합니다.</p>
+  <form name="register-form">
+  <div id="register-container">
+    <div class="register-container-item">
+      <input id="registerID" class="register-input" name="userID" type="text" placeholder="사용하실 ID를 입력해주세요">
+      <div class="null-check-div"> 필수 항목 입니다 </div>
+    </div>
+    <div class="register-container-item">
+    <input id="registerPW" class="register-input" name="userPW" type="text" placeholder="비밀번호를 입력">
+      <div class="null-check-div"> 필수 항목 입니다 </div>
+    </div>
+    <div class="register-container-item">
+      <input id="registerPWCheck" class="register-input" type="text" placeholder="위의 비밀번호를 다시 입력해주세요.">
+      <div class="null-check-div"> 필수 항목 입니다 </div>
+    </div>
+      <div class="register-container-item">
+      <input class="register-input" name="userName" type="text" placeholder="이름">
+        <div class="null-check-div"> 필수 항목 입니다 </div>
+      </div>
+    <div class="register-container-item-select">
+      <select id="tel-select"><option>010</option><option>011</option></select>
+      <div id="number-container">
+        <input id="registerTel" class="register-input" type="text" placeholder="휴대폰 번호 입력">
+        <div class="null-check-div"> 필수 항목 입니다 </div>
+        <input id="saveTel" type="hidden" name="userTel">
+      </div>
+    </div>
+    <div class="register-container-item-select">
+      <div id="email-container">
+        <input id="registerEmail" class="register-input" type="text" placeholder="이메일">
+        <div class="null-check-div"> 필수 항목 입니다 </div>
+        <input id="saveEmail" type="hidden" name="userEmail" >
+      </div>
+        <select id="email-select"><option>직접입력</option><option>naver.com</option><option>google.com</option></select>
+    </div>
+    <button id="submitBtn">확인</button>
+    </div>
+  </form>
+</body>
+</html>

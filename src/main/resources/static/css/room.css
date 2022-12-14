@@ -1,0 +1,59 @@
+#room-insert-container{
+    display: flex;
+    line-height: 40px;
+}
+#room-setting {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+#room-list-wrap{
+    display: flex;
+    padding: 20px;
+
+}
+#reserved-room-container{
+    border: 1px solid black;
+    margin-right: 50px;
+    padding: 20px;
+}
+#empty-room-container{
+    border: 1px solid black;
+    padding: 20px;
+}
+.room-list-btn-container{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+}
+button{
+    background-color: white;
+    color: red;
+    width: 60px;
+    height: 30px;
+    font-size: 14px;
+}
+.submit-btn{
+    width: 200px;
+    background-color: lightsteelblue;
+    color: black;
+    font-weight: bold;
+}
+
+ul{
+    display: flex;
+}
+
+img{
+    width: 100px;
+    height: 50px;
+}
+
+
+ul > button {
+    font-size: 12px;
+    margin: 5px;
+    width: 60px;
+}

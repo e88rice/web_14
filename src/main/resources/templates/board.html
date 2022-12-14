@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>예약 현황</title>
+</head>
+<style>
+    th, td{
+        width: 100px;
+        height: 30px;
+    }
+
+    table, th, td{
+        border: 1px solid black;
+        text-align: center;
+    }
+    ul li {
+        list-style: none;
+    }
+</style>
+<body>
+<h2>현재 예약 현황판</h2>
+<span sec:authorize="hasRole('ADMIN')">관리자로 로그인 하였습니다</span>
+<div>
+    <ul>
+        <li sec:authorize="not isAuthenticated()"><input type="button" value="로그인" th:onclick="|location.href='@{/users/login}'|"></li>
+        <li sec:authorize="isAuthenticated()"><input type="button" value="로그아웃"  th:onclick="|location.href='@{/logout}'|"></li>
+        <li sec:authorize="not isAuthenticated()"><input type="button" value="회원가입"  th:onclick="|location.href='@{/users/register}'|"></li>
+    </ul>
+</div>
+    <table>
+        <thead>
+            <tr>
+                <th>예약순번</th>
+                <th>방번호</th>
+                <th>방크기</th>
+                <th>가격</th>
+                <th>예약자</th>
+                <th>예약날짜</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="dto, status : ${reserveBoardDTO}">
+                <td>[[${status.count}]]</td>
+                <td>[[${dto.reserveVO.reserveRoom}]]</td>
+                <td>[[${dto.roomVO.roomSize}]]인</td>
+                <td>[[${dto.roomVO.roomPrice}]]원</td>
+                <td>[[${dto.reserveVO.reserveUser}]]</td>
+                <td>[[${dto.reserveVO.reserveDate}]]</td>
+            </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/reservation}">예약하기</a>
+    <a sec:authorize="hasRole('ADMIN')" th:href="@{/manager/room}">관리자페이지</a>
+</body>
+</html>

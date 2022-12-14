@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>예약화면</title>
+</head>
+<style>
+    ul{
+        display: flex;
+    }
+    li{
+        list-style: none;
+        margin: 15px;
+    }
+    li > input{
+        border: none;
+        background-color: black;
+        color: white;
+        width: 100px;
+        height: 40px;
+        font-size: 20px;
+    }
+    .reserve-room > form{
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid rgba(0,0,0,0.4);
+    }
+    #reserve_room-container{
+        display: flex;
+    }
+</style>
+<body>
+    <h3>예약 가능한 방 리스트</h3>
+    <div>
+        <ul>
+            <li sec:authorize="not isAuthenticated()"><input type="button" value="로그인" th:onclick="|location.href='@{/users/login}'|"></li>
+            <li sec:authorize="isAuthenticated()"><input type="button" value="로그아웃"  th:onclick="|location.href='@{/logout}'|"></li>
+            <li sec:authorize="not isAuthenticated()"><input type="button" value="회원가입"  th:onclick="|location.href='@{/users/register}'|"></li>
+        </ul>
+    </div>
+    <div id="reserve_room-container">
+        <div class="reserve-room" th:each="roomVO : ${roomVOS}">
+            <form th:action="|@{/reservation/}${roomVO.roomNo}|" th:method="post">
+                <span>방번호: [[${roomVO.roomNo}]]</span>
+                <img th:src="|@{/images/}${roomVO.roomNo}.jpg|" width="200">
+                <span>최대 인원: [[${roomVO.roomSize}]]명</span>
+                <span>가격: [[${roomVO.roomPrice}]]원</span>
+                <input type="submit" value="예약하기">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
